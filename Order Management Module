@@ -1,0 +1,19 @@
+# Order Management Module
+
+## Overview
+The Order Management Module facilitates the processing and tracking of customer orders.
+It enables administrators to view and manage orders, monitor their status, and ensure timely delivery.
+
+## Functionalities
+1. **View Orders** – Displays all customer orders in a tabular dashboard with filters.
+2. **Update Order Status** – Admins can update the current order stage.
+3. **Cancel Order** – Admins or customers can cancel an order (soft delete).
+
+## Database Design
+Table: `orders`  
+Columns: order_id, customer_id, total_amount, order_status, shipping_address, created_at, updated_at, status.
+
+## Deliverables
+- SQL Schema (`orders_table.sql`)
+- End User Documentation (`OrderManagementModule.pdf`)
+
