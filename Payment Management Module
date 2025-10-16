@@ -1,0 +1,63 @@
+Payment Management Module
+The Payment Management Module is part of the VIBGYOR system.
+It manages payment processing, transaction history, and refund operations for customer orders.
+This module ensures secure payment transactions using third-party gateways and provides administrators with tools to review and control financial records.
+
+📋 Features
+1. Process Payment
+Customers pay via secure external gateways (Stripe, PayPal, etc.).
+
+Supported payment methods: Credit/Debit Card, PayPal, Bank Transfer.
+
+2. Payment Dashboard
+Admins can view all transaction records, including:
+
+Payment ID
+
+Order ID
+
+Amount Paid
+
+Payment Method (Credit Card, PayPal, etc.)
+
+Payment Status (Paid, Failed, Refunded)
+
+Created/Updated Timestamps
+
+3. Refund Payment
+Admins can issue refunds for cancelled/returned orders.
+
+Refund transactions and statuses are logged and visible in the dashboard.
+
+🧩 Tech Stack
+Layer	Technology
+Frontend	HTML / CSS / JavaScript (or React)
+Backend	Spring Boot / Node.js / Django
+Database	MySQL
+Deployment	Render / Vercel / Railway (free-tier)
+🗄️ Database Design
+Database Name: VIBGYOR
+Table Name: payments
+
+Column Name	Data Type	Description
+payment_id	INT (PK, AUTO_INCREMENT)	Unique identifier for each payment
+order_id	INT (FK)	References order_id in the orders table
+amount	DECIMAL(10,2)	Amount paid
+payment_method	VARCHAR(50)	Method used (Credit Card, PayPal, Bank, etc.)
+payment_status	VARCHAR(50)	Status (Paid, Failed, Refunded)
+created_at	DATETIME	Timestamp when payment processed
+updated_at	DATETIME	Timestamp when details last updated
+⚙️ SQL Script
+Create the payments table in your MySQL database:
+
+sql
+CREATE TABLE payments (
+  payment_id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id INT,
+  amount DECIMAL(10,2) NOT NULL,
+  payment_method VARCHAR(50) NOT NULL,
+  payment_status VARCHAR(50) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
