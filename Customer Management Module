@@ -1,0 +1,78 @@
+# Customer Management Module
+
+The **Customer Management Module** is part of the VIBGYOR system.  
+It handles customer data — including registration, personal details, account management, and status tracking.  
+This module allows administrators to efficiently manage customer accounts while maintaining accurate and secure records.
+
+---
+
+## 📋 Features
+
+### 1. Add a New Customer
+- Customers can register via the frontend.  
+- Admins can manually add new customers through the admin dashboard.
+
+### 2. Customer Dashboard
+- Admins can view all registered customers along with:
+  - Name  
+  - Email  
+  - Phone number  
+  - Account status (Active / Inactive)  
+  - Order history (if integrated)
+
+### 3. Update Customer Details
+- Admins can edit customer information such as:
+  - Name, Email, and Phone number  
+  - Account status  
+- Automatic update of the `updated_at` timestamp.
+
+### 4. Deactivate Customer Account
+- Soft delete implemented using the `status` column.  
+- Inactive users remain in the database for auditing and data integrity.
+
+---
+
+## 🧩 Tech Stack
+
+| Layer | Technology |
+|-------|-------------|
+| Frontend | HTML / CSS / JavaScript *(or React)* |
+| Backend | Node.js / Express *(or Spring Boot / Django depending on setup)* |
+| Database | MySQL |
+| Deployment | Render / Vercel / Railway *(free-tier cloud)* |
+
+---
+
+## 🗄️ Database Design
+
+**Database Name:** `VIBGYOR`  
+**Table Name:** `users`
+
+| Column Name | Data Type | Description |
+|--------------|------------|-------------|
+| `user_id` | INT (PK, AUTO_INCREMENT) | Unique identifier for each customer |
+| `first_name` | VARCHAR(100) | Customer’s first name |
+| `last_name` | VARCHAR(100) | Customer’s last name |
+| `email` | VARCHAR(100) | Customer’s email address |
+| `phone` | VARCHAR(15) | Customer’s phone number |
+| `created_at` | DATETIME | Timestamp when the account was created |
+| `updated_at` | DATETIME | Timestamp when details were last updated |
+| `status` | BOOLEAN | `TRUE` for active, `FALSE` for inactive |
+
+---
+
+## ⚙️ SQL Script
+
+Create the `users` table in your MySQL database:
+
+```sql
+CREATE TABLE users (
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  phone VARCHAR(15),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  status BOOLEAN DEFAULT TRUE
+);
