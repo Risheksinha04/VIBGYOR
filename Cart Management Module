@@ -1,0 +1,61 @@
+# Cart Management Module
+
+This module enables customers to add, update, and remove products from their shopping cart, providing a seamless shopping experience before checkout. It keeps prices and quantities updated in real time and includes dashboards for customer and admin review.
+
+---
+
+## 📋 Features
+
+### 1. Add to Cart
+- Customers can add products directly from product pages.
+- The system checks inventory before allowing an item to be added.
+
+### 2. Update Cart
+- Customers can change item quantities.
+- Price updates automatically; stock is revalidated.
+
+### 3. Remove from Cart
+- Items can be removed instantly.
+- Total price recalculates.
+
+### 4. Cart Dashboard
+- Customers see cart items, price, quantity, total.
+- Admins analyze all carts and review abandonment rates.
+
+---
+
+## 🗄️ Database Design
+
+**Database Name:** `VIBGYOR`  
+**Table Name:** `carts`
+
+| Column Name   | Data Type                | Description                               |
+|---------------|-------------------------|-------------------------------------------|
+| cart_id       | INT, PK, AUTO_INCREMENT | Unique ID for each cart                   |
+| customer_id   | INT, FK                 | References users(user_id)                 |
+| product_id    | INT, FK                 | References products(product_id)           |
+| quantity      | INT                     | Item count in cart                        |
+| total_price   | DECIMAL(10,2)           | Total price of cart items                 |
+| created_at    | DATETIME                | Cart creation timestamp                   |
+| updated_at    | DATETIME                | Last updated timestamp                    |
+
+**SQL Script:**
+
+---
+
+## 📑 End User Documentation
+
+- Customers add, update, and remove items from their cart before checkout.
+- Cart dashboard displays item details.
+- Admins access and analyze carts for monitoring and improvements.
+
+---
+
+## 🆘 Support
+
+For issues and suggestions, open a GitHub issue or contact the maintainer listed in this repo.
+
+---
+
+**Customize URLs and features based on your final code before publishing!**
+
