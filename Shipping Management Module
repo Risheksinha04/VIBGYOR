@@ -1,0 +1,56 @@
+Shipping Management Module
+The Shipping Management Module manages the shipping process for customer orders, including shipping cost calculation, shipment tracking, and integration with logistics providers. It ensures products are shipped efficiently and customers can monitor their delivery status at every stage.
+
+📋 Features
+1. Shipping Cost Calculation
+Calculates shipping costs based on package weight, delivery location, and shipping method.
+
+2. Shipping Dashboard (Admin)
+Allows admins to view all orders with shipping details:
+
+Courier service
+
+Tracking number
+
+Shipping status
+
+Shipping cost
+
+3. Track Shipment (Customer)
+Customers can track their shipment status via a tracking number.
+
+4. Update Shipping Information (Admin)
+Admins can update shipping details such as tracking numbers and courier info after order dispatch.
+
+🗄️ Database Design
+Table Name: shipping
+
+Column Name	Data Type	Description
+shipping_id	INT, PK, AUTO_INCREMENT	Unique identifier for each shipping entry
+order_id	INT, FK	References orders(order_id)
+courier_service	VARCHAR(100)	Courier/shipping provider
+tracking_number	VARCHAR(100)	Unique tracking number
+shipping_status	VARCHAR(50)	Shipment status (Shipped, In Transit, Delivered)
+shipping_cost	DECIMAL(10,2)	Shipping cost for the order
+created_at	DATETIME	Shipping initiated timestamp
+updated_at	DATETIME	Last updated timestamp
+SQL Script:
+
+sql
+CREATE TABLE shipping (
+  shipping_id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id INT,
+  courier_service VARCHAR(100),
+  tracking_number VARCHAR(100),
+  shipping_status VARCHAR(50),
+  shipping_cost DECIMAL(10,2) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+🧩 Tech Stack
+Layer	Technology
+Frontend	HTML / CSS / JavaScript / React
+Backend	Spring Boot / Node.js / Django
+Database	MySQL
+Deployment	Render / Vercel / Railway
