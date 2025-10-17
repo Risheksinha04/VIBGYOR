@@ -1,0 +1,51 @@
+Wishlist Management Module
+The Wishlist Management Module lets customers save products they are interested in but not yet ready to purchase. This feature improves engagement and helps customers easily track products for future shopping.
+
+📋 Features
+1. Add to Wishlist
+Customers add products to their Wishlist from product pages.
+
+Duplicate entries of the same product are prevented.
+
+2. View Wishlist
+Customers see all saved products, including:
+
+Product name
+
+Price
+
+Availability status (In Stock/Out of Stock)
+
+3. Remove from Wishlist
+Products can be removed from the Wishlist at any time.
+
+4. Move from Wishlist to Cart
+Desired products can be moved to the shopping cart for purchase.
+
+🗄️ Database Design
+Table Name: wishlists
+
+Column Name	Data Type	Description
+wishlist_id	INT, PK, AUTO_INCREMENT	Unique identifier for each wishlist entry
+customer_id	INT, FK	References users(user_id)
+product_id	INT, FK	References products(product_id)
+created_at	DATETIME	When added to Wishlist
+updated_at	DATETIME	Last update timestamp
+SQL Script:
+
+sql
+CREATE TABLE wishlists (
+  wishlist_id INT AUTO_INCREMENT PRIMARY KEY,
+  customer_id INT,
+  product_id INT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (customer_id) REFERENCES users(user_id),
+  FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+🧩 Tech Stack
+Layer	Technology
+Frontend	HTML / CSS / JavaScript / React
+Backend	Spring Boot / Node.js / Django
+Database	MySQL
+Deployment	Render / Vercel / Railway
