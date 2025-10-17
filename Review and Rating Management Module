@@ -1,0 +1,53 @@
+Review and Rating Management Module
+The Review and Rating Management Module allows customers to leave feedback on products they’ve purchased, helping other customers make informed decisions and giving businesses insight into product quality and customer satisfaction.
+
+📋 Features
+1. Add a Review/Rating
+Customers add a review and rating (1 to 5 stars) for purchased products.
+
+Supports text reviews up to 1000 characters.
+
+2. Review Moderation
+Admins moderate reviews, approving or rejecting them based on quality and guidelines.
+
+3. View Product Reviews
+Customers see approved reviews and ratings on each product’s page.
+
+4. Delete/Update Reviews
+Admins can delete inappropriate reviews.
+
+Customers can update or delete their own reviews.
+
+🗄️ Database Design
+Table Name: reviews
+
+Column Name	Data Type	Description
+review_id	INT, PK, AUTO_INCREMENT	Unique identifier for each review
+product_id	INT, FK	References products(product_id)
+customer_id	INT, FK	References users(user_id)
+rating	INT	Rating (1-5 stars)
+review_text	VARCHAR(1000)	Customer’s review content
+created_at	DATETIME	Review creation timestamp
+updated_at	DATETIME	Last updated timestamp
+status	BOOLEAN	True for approved, False for unapproved
+SQL Script:
+
+sql
+CREATE TABLE reviews (
+  review_id INT AUTO_INCREMENT PRIMARY KEY,
+  product_id INT,
+  customer_id INT,
+  rating INT CHECK (rating >= 1 AND rating <= 5),
+  review_text VARCHAR(1000),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  status BOOLEAN DEFAULT FALSE,
+  FOREIGN KEY (product_id) REFERENCES products(product_id),
+  FOREIGN KEY (customer_id) REFERENCES users(user_id)
+);
+🧩 Tech Stack
+Layer	Technology
+Frontend	HTML / CSS / JavaScript / React
+Backend	Spring Boot / Node.js / Django
+Database	MySQL
+Deployment	Render / Vercel / Railway
